@@ -69,7 +69,7 @@
   background: #fff;
 }
 
-.lg-group input:first-of-type:last-child {
+.lg-group input:last-child {
   border-radius: 0 6px 6px 0;
 }
 
@@ -114,4 +114,18 @@
   color: #b91c1c;
   font-size: 13px;
   margin-bottom: 8px;
+}
+
+/* ---------- Responsif ---------- */
+@media (max-width: 480px) {
+  .lg-page { padding: 16px; align-items: start; padding-top: 90px; }
+  .lg-card { padding: 56px 20px 24px; }
+  .lg-title { font-size: 18px; margin-bottom: 22px; }
+  .lg-group { height: 44px; }
+  .lg-group label { width: 92px; padding: 0 10px; font-size: 13px; }
+  .lg-eye { width: 46px; }
+}
+
+@media (max-width: 360px) {
+  .lg-group label { width: 80px; font-size: 12px; }
 }

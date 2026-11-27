@@ -77,7 +77,7 @@ export default function HalamanTransaksi() {
           </div>
 
           <div className="table-wrap">
-            <table>
+            <table className="tabel-kartu">
               <thead>
                 <tr>
                   <th>Tanggal</th>
@@ -97,12 +97,15 @@ export default function HalamanTransaksi() {
                 )}
                 {tampil.map((t) => (
                   <tr key={t.id}>
-                    <td>{tanggalPendek(t.tanggal)}</td>
-                    <td>{t.keterangan}</td>
-                    <td>
+                    <td data-label="Tanggal">{tanggalPendek(t.tanggal)}</td>
+                    <td data-label="Keterangan">{t.keterangan}</td>
+                    <td data-label="Kategori">
                       <span className="badge">{t.kategori}</span>
                     </td>
-                    <td className={`kanan ${t.jenis === "masuk" ? "teks-hijau" : "teks-merah"}`}>
+                    <td
+                      data-label="Nominal"
+                      className={`kanan ${t.jenis === "masuk" ? "teks-hijau" : "teks-merah"}`}
+                    >
                       {t.jenis === "masuk" ? "+" : "-"} {rupiah(t.nominal)}
                     </td>
                     <td className="aksi">
