@@ -1,15 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import StatCard from "../components/StatCard";
 import { useFinance } from "../context/FinanceContext";
 import { NAMA_BULAN, rupiah } from "../lib/format";
 
 export default function HalamanLaporan() {
   const { siap, transaksi } = useFinance();
-  const [tahun, setTahun] = useState(new Date().getFullYear());
+  const [tahunIni, setTahunIni] = useState<number | null>(null);
+  const [tahun, setTahun] = useState(0);
 
-  if (!siap) return <p className="memuat">Memuat data...</p>;
+  useEffect(() => {
+    const t = new Date().getFullYear();
+    setTahunIni(t);
+    setTahun(t);
+  }, []);
+
+  if (!siap || tahunIni === null) return <p className="memuat">Memuat data...</p>;
 
   const rekap = NAMA_BULAN.map((nama, i) => {
     const prefix = `${tahun}-${String(i + 1).padStart(2, "0")}`;
@@ -53,10 +60,11 @@ export default function HalamanLaporan() {
             value={tahun}
             onChange={(e) => setTahun(Number(e.target.value))}
           >
-            {[0, 1, 2].map((n) => {
-              const th = new Date().getFullYear() - n;
-              return <option key={th}>{th}</option>;
-            })}
+            {[0, 1, 2].map((n) => (
+              <option key={n} value={tahunIni - n}>
+                {tahunIni - n}
+              </option>
+            ))}
           </select>
           <button className="btn btn-utama btn-kecil" onClick={unduhCsv}>
             Unduh CSV

@@ -17,7 +17,7 @@ interface Props {
 
 export default function TransaksiForm({ awal, onSimpan, onBatal }: Props) {
   const [jenis, setJenis] = useState<Jenis>("keluar");
-  const [tanggal, setTanggal] = useState(hariIni());
+  const [tanggal, setTanggal] = useState("");
   const [keterangan, setKeterangan] = useState("");
   const [kategori, setKategori] = useState(KATEGORI_KELUAR[0]);
   const [nominal, setNominal] = useState("");
